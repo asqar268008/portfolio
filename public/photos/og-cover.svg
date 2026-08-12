@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Asqar Ali SMS — AI/ML Engineer">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b15"/>
+      <stop offset="1" stop-color="#0d1424"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.85" cy="0.1" r="0.6">
+      <stop offset="0" stop-color="#3b82f6" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.1" cy="0.95" r="0.6">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <rect x="0" y="0" width="1200" height="6" fill="url(#accent)"/>
+
+  <g font-family="Manrope, Inter, Segoe UI, sans-serif">
+    <text x="88" y="196" font-size="22" font-weight="600" letter-spacing="6" fill="#7dd3fc">AI / ML ENGINEER</text>
+
+    <text x="88" y="304" font-size="86" font-weight="800" fill="#f8fafc" letter-spacing="-2">Asqar Ali SMS</text>
+
+    <text x="88" y="374" font-size="30" font-weight="500" fill="#94a3b8">Machine Learning · Deep Learning · NLP</text>
+    <text x="88" y="418" font-size="30" font-weight="500" fill="#94a3b8">Generative AI · RAG Systems</text>
+
+    <g transform="translate(88, 486)">
+      <rect x="0" y="0" width="330" height="52" rx="26" fill="#3b82f6" fill-opacity="0.14" stroke="#3b82f6" stroke-opacity="0.45"/>
+      <text x="26" y="34" font-size="21" font-weight="600" fill="#bfdbfe">Published · CRC Press 2026</text>
+
+      <rect x="352" y="0" width="330" height="52" rx="26" fill="#8b5cf6" fill-opacity="0.14" stroke="#8b5cf6" stroke-opacity="0.45"/>
+      <text x="378" y="34" font-size="21" font-weight="600" fill="#ddd6fe">2nd Prize · Research Conclave</text>
+    </g>
+
+    <text x="88" y="588" font-size="22" font-weight="500" fill="#64748b">github.com/asqar268008</text>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="1010" cy="300" r="150" fill="none" stroke="url(#accent)" stroke-width="2" stroke-opacity="0.55"/>
+    <circle cx="1010" cy="300" r="112" fill="none" stroke="url(#accent)" stroke-width="1.5" stroke-opacity="0.35"/>
+    <circle cx="1010" cy="300" r="74" fill="none" stroke="url(#accent)" stroke-width="1" stroke-opacity="0.22"/>
+    <circle cx="1010" cy="150" r="9" fill="#3b82f6"/>
+    <circle cx="1122" cy="300" r="7" fill="#8b5cf6"/>
+    <circle cx="1010" cy="374" r="6" fill="#22d3ee"/>
+    <circle cx="898" cy="300" r="7" fill="#34d399"/>
+  </g>
+</svg>
