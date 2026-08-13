@@ -1,3 +1,12 @@
+// Media fields:
+//   image     — card thumbnail (public/photos/)
+//   demoVideo — the recording, played in-page by the modal's VideoPlayer.
+//               Its presence is what shows the "Watch Demo" button.
+//   poster    — first frame shown before playback (public/posters/, generated
+//               from the video itself) so a demo never opens on a flat gradient.
+//   demoLink  — an external *live* deployment, if one exists. Never the .mp4:
+//               a raw video file dumped in a new tab loses the visitor.
+
 export const PROJECT_FILTERS = [
   { id: 'all', label: 'All' },
   { id: 'ai-ml', label: 'AI/ML' },
@@ -44,10 +53,89 @@ const projects = [
     gradient: ['#3b82f6', '#8b5cf6'],
     image: 'photos/Medforecast.webp',
     demoVideo: 'videos/Medforecast.mp4',
-    poster: null,
+    poster: 'posters/Medforecast.jpg',
     github: 'https://github.com/asqar268008/MedForecast',
-    demoLink: 'videos/Medforecast.mp4',
+    demoLink: null,
     impact: ['CRC Press 2026', 'Preventive Healthcare'],
+  },
+    {
+    id: 'burnout-predictor',
+    title: 'Burnout Predictor',
+    type: 'Machine Learning · Deployed API',
+    category: ['ai-ml', 'software'],
+    tagline: 'ML service that classifies developer burnout risk from work and lifestyle signals.',
+    description:
+      'An end-to-end machine-learning service that classifies burnout risk as Low, Medium or High from eleven work and lifestyle signals — trained across five models and served as a real-time FastAPI prediction endpoint.',
+    problem:
+      'Burnout is recognised late, usually once someone has already disengaged. The early signals — sleep, work hours, screen time, meeting load, exercise — are measurable well before that point, but they are rarely read together as a single risk picture.',
+    approach:
+      'Cleaned a 7,000-row dataset of work and lifestyle features, encoded the three-class target, then trained and compared five classifiers — XGBoost, Random Forest, Decision Tree, Gradient Boosting and AdaBoost — before serialising the best performer behind a FastAPI endpoint that returns a burnout label in real time.',
+    architecture: [
+      { step: '01', title: 'Data Preparation', desc: '7,000 records across 11 work and lifestyle features; missing values imputed by column mean.' },
+      { step: '02', title: 'Target Encoding', desc: 'Three-class burnout level (Low / Medium / High) label-encoded for training.' },
+      { step: '03', title: 'Model Comparison', desc: 'XGBoost, Random Forest, Decision Tree, Gradient Boosting and AdaBoost benchmarked on an 80/20 split.' },
+      { step: '04', title: 'Serialisation', desc: 'Winning classifier bundled with its label encoder via joblib for reuse at inference time.' },
+      { step: '05', title: 'Prediction API', desc: 'FastAPI POST /predict validates input with Pydantic and returns both the numeric class and its human-readable label.' },
+    ],
+    technologies: ['Python', 'FastAPI', 'Scikit-learn', 'XGBoost', 'Pandas', 'Pydantic', 'Uvicorn'],
+    contribution: [
+      'Data cleaning and imputation across the full feature set.',
+      'Trained and benchmarked five classifiers to select the strongest.',
+      'Built the FastAPI service, request schema, and prediction response.',
+      'Packaged model and encoder together so inference matches training exactly.',
+    ],
+    results: [
+      { value: '98.9%', label: 'Accuracy — Gradient Boosting, best of five models' },
+      { value: '3-class', label: 'Low / Medium / High burnout risk' },
+      { value: 'Real-time', label: 'FastAPI prediction endpoint' },
+    ],
+    gradient: ['#f472b6', '#8b5cf6'],
+    image: 'photos/Burnout.jpg',
+    demoVideo: 'videos/Burnout.mp4',
+    poster: 'posters/Burnout.jpg',
+    github: 'https://github.com/asqar268008/Burnout-Predictor',
+    demoLink: null,
+    impact: ['5-Model Benchmark', 'Deployed FastAPI Service'],
+  },
+  {
+    id: 'logischain',
+    title: 'LogisChain AI',
+    type: 'Supply Chain ML · Predictive Analytics',
+    category: ['ai-ml'],
+    tagline: 'Machine-learning pipeline that predicts supply-chain disruption risk from global logistics data.',
+    description:
+      'An end-to-end machine-learning pipeline that predicts whether a shipment will hit a supply-chain disruption, built across four real logistics datasets — including the DataCo supply-chain records and World Bank Logistics Performance Index — and benchmarked across four classification models.',
+    problem:
+      'Supply-chain disruptions are expensive precisely because they are noticed late. The signals that precede them — lead times, port turnaround, geopolitical risk, supplier reliability — sit scattered across separate datasets in incompatible formats, so nobody reads them together until a shipment has already failed.',
+    approach:
+      'Consolidated four logistics datasets through a six-stage notebook pipeline, engineered temporal and risk-derived features across each source, selected the strongest predictors, then trained and compared Random Forest, Decision Tree, Logistic Regression and XGBoost on a stratified split to find the best disruption classifier.',
+    architecture: [
+      { step: '01', title: 'Data Understanding', desc: 'Profiled four logistics sources — 180K+ order records, shipment data, resilience data, and World Bank LPI.' },
+      { step: '02', title: 'Cleaning', desc: 'Normalized schemas and resolved missing and inconsistent values across sources.' },
+      { step: '03', title: 'Exploratory Analysis', desc: 'Mapped disruption patterns against route, supplier, and regional risk factors.' },
+      { step: '04', title: 'Feature Engineering', desc: 'Derived Risk_Index, Shipping_Delay, Delivery_Time, Supplier_Reliability_Level, and year-over-year port turnaround changes.' },
+      { step: '05', title: 'Feature Selection', desc: 'Narrowed engineered features to the strongest disruption predictors.' },
+      { step: '06', title: 'Model Training', desc: 'Random Forest, Decision Tree, Logistic Regression and XGBoost compared on an 80/20 stratified split.' },
+    ],
+    technologies: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'Jupyter'],
+    contribution: [
+      'Designed the six-stage pipeline from raw datasets through to a trained model.',
+      'Engineered temporal, categorical, and risk-derived features across four sources.',
+      'Benchmarked four classifiers and selected on ROC-AUC rather than accuracy alone.',
+      'Serialized the winning model for reuse.',
+    ],
+    results: [
+      { value: '0.80', label: 'ROC-AUC — Random Forest, best of four models' },
+      { value: '0.75', label: 'F1 score on held-out test set' },
+      { value: '5,000', label: 'Shipments modelled — 80/20 stratified split' },
+    ],
+    gradient: ['#f59e0b', '#ef4444'],
+    image: 'photos/Logischain.jpg',
+    demoVideo: 'videos/Logischain.mp4',
+    poster: 'posters/Logischain.jpg',
+    github: 'https://github.com/asqar268008/LogisChain-AI',
+    demoLink: null,
+    impact: ['0.80 ROC-AUC', 'Supply Chain Risk'],
   },
   {
     id: 'brain-tumor',
@@ -81,9 +169,9 @@ const projects = [
     gradient: ['#22d3ee', '#3b82f6'],
     image: 'photos/Brain-tumor.jpg',
     demoVideo: 'videos/Brain_tumor.mp4',
-    poster: null,
+    poster: 'posters/Brain_tumor.jpg',
     github: 'https://github.com/asqar268008/Brain-tumor-prediction',
-    demoLink: 'videos/Brain_tumor.mp4',
+    demoLink: null,
     impact: ['4-Class MRI Classification', 'Automated Diagnostics'],
   },
   {
@@ -119,9 +207,9 @@ const projects = [
     gradient: ['#8b5cf6', '#22d3ee'],
     image: 'photos/Floatchat.jpeg',
     demoVideo: 'videos/Floatchatai.mp4',
-    poster: null,
+    poster: 'posters/Floatchatai.jpg',
     github: 'https://github.com/asqar268008/FloatChat-Ai',
-    demoLink: 'videos/Floatchatai.mp4',
+    demoLink: null,
     impact: ['Context-Aware NLP', 'Domain-Specific RAG'],
   },
   {
@@ -156,106 +244,10 @@ const projects = [
     gradient: ['#34d399', '#22d3ee'],
     image: 'photos/Health_agent.jpg',
     demoVideo: 'videos/Health_agent.mp4',
-    poster: null,
+    poster: 'posters/Health_agent.jpg',
     github: 'https://github.com/asqar268008/HealthAgent',
-    demoLink: 'videos/Health_agent.mp4',
-    impact: ['Real-time Decisions', 'Personalized AI'],
-  },
-  /* -------------------------------------------------------------------------
-   * LogisChain AI — WORK IN PROGRESS, hidden from the site for now.
-   *
-   * TO PUBLISH IT: delete this comment-open line and the matching close marker
-   * at the end of the block, and the project reappears in the grid.
-   *
-   * Content below is drawn from the repository itself (notebooks 01-06) —
-   * every metric is a value printed in 06_model_training.ipynb. Re-check those
-   * numbers before publishing in case the model has moved on since.
-   * ---------------------------------------------------------------------- */
-  /*
-  {
-    id: 'logischain',
-    title: 'LogisChain AI',
-    type: 'Supply Chain ML · Predictive Analytics',
-    category: ['ai-ml'],
-    tagline: 'Machine-learning pipeline that predicts supply-chain disruption risk from global logistics data.',
-    description:
-      'An end-to-end machine-learning pipeline that predicts whether a shipment will hit a supply-chain disruption, built across four real logistics datasets — including the DataCo supply-chain records and World Bank Logistics Performance Index — and benchmarked across four classification models.',
-    problem:
-      'Supply-chain disruptions are expensive precisely because they are noticed late. The signals that precede them — lead times, port turnaround, geopolitical risk, supplier reliability — sit scattered across separate datasets in incompatible formats, so nobody reads them together until a shipment has already failed.',
-    approach:
-      'Consolidated four logistics datasets through a six-stage notebook pipeline, engineered temporal and risk-derived features across each source, selected the strongest predictors, then trained and compared Random Forest, Decision Tree, Logistic Regression and XGBoost on a stratified split to find the best disruption classifier.',
-    architecture: [
-      { step: '01', title: 'Data Understanding', desc: 'Profiled four logistics sources — 180K+ order records, shipment data, resilience data, and World Bank LPI.' },
-      { step: '02', title: 'Cleaning', desc: 'Normalized schemas and resolved missing and inconsistent values across sources.' },
-      { step: '03', title: 'Exploratory Analysis', desc: 'Mapped disruption patterns against route, supplier, and regional risk factors.' },
-      { step: '04', title: 'Feature Engineering', desc: 'Derived Risk_Index, Shipping_Delay, Delivery_Time, Supplier_Reliability_Level, and year-over-year port turnaround changes.' },
-      { step: '05', title: 'Feature Selection', desc: 'Narrowed engineered features to the strongest disruption predictors.' },
-      { step: '06', title: 'Model Training', desc: 'Random Forest, Decision Tree, Logistic Regression and XGBoost compared on an 80/20 stratified split.' },
-    ],
-    technologies: ['Python', 'Scikit-learn', 'XGBoost', 'Pandas', 'NumPy', 'Jupyter'],
-    contribution: [
-      'Designed the six-stage pipeline from raw datasets through to a trained model.',
-      'Engineered temporal, categorical, and risk-derived features across four sources.',
-      'Benchmarked four classifiers and selected on ROC-AUC rather than accuracy alone.',
-      'Serialized the winning model for reuse.',
-    ],
-    results: [
-      { value: '0.80', label: 'ROC-AUC — Random Forest, best of four models' },
-      { value: '0.75', label: 'F1 score on held-out test set' },
-      { value: '5,000', label: 'Shipments modelled — 80/20 stratified split' },
-    ],
-    gradient: ['#f59e0b', '#ef4444'],
-    // Add a screenshot at public/photos/logischain.jpg (an EDA chart or the
-    // confusion matrix works well) — falls back to the gradient until then.
-    image: 'photos/logischain.jpg',
-    demoVideo: null,
-    poster: null,
-    github: 'https://github.com/asqar268008/LogisChain-AI',
     demoLink: null,
-    impact: ['0.80 ROC-AUC', 'Supply Chain Risk'],
-  },
-  */
-  /* ---------------- end of LogisChain AI (work in progress) --------------- */
-  {
-    // Content below is drawn from the repository itself — every metric is a
-    // value printed in train.ipynb, and the API shape matches app.py.
-    id: 'burnout-predictor',
-    title: 'Burnout Predictor',
-    type: 'Machine Learning · Deployed API',
-    category: ['ai-ml', 'software'],
-    tagline: 'ML service that classifies developer burnout risk from work and lifestyle signals.',
-    description:
-      'An end-to-end machine-learning service that classifies burnout risk as Low, Medium or High from eleven work and lifestyle signals — trained across five models and served as a real-time FastAPI prediction endpoint.',
-    problem:
-      'Burnout is recognised late, usually once someone has already disengaged. The early signals — sleep, work hours, screen time, meeting load, exercise — are measurable well before that point, but they are rarely read together as a single risk picture.',
-    approach:
-      'Cleaned a 7,000-row dataset of work and lifestyle features, encoded the three-class target, then trained and compared five classifiers — XGBoost, Random Forest, Decision Tree, Gradient Boosting and AdaBoost — before serialising the best performer behind a FastAPI endpoint that returns a burnout label in real time.',
-    architecture: [
-      { step: '01', title: 'Data Preparation', desc: '7,000 records across 11 work and lifestyle features; missing values imputed by column mean.' },
-      { step: '02', title: 'Target Encoding', desc: 'Three-class burnout level (Low / Medium / High) label-encoded for training.' },
-      { step: '03', title: 'Model Comparison', desc: 'XGBoost, Random Forest, Decision Tree, Gradient Boosting and AdaBoost benchmarked on an 80/20 split.' },
-      { step: '04', title: 'Serialisation', desc: 'Winning classifier bundled with its label encoder via joblib for reuse at inference time.' },
-      { step: '05', title: 'Prediction API', desc: 'FastAPI POST /predict validates input with Pydantic and returns both the numeric class and its human-readable label.' },
-    ],
-    technologies: ['Python', 'FastAPI', 'Scikit-learn', 'XGBoost', 'Pandas', 'Pydantic', 'Uvicorn'],
-    contribution: [
-      'Data cleaning and imputation across the full feature set.',
-      'Trained and benchmarked five classifiers to select the strongest.',
-      'Built the FastAPI service, request schema, and prediction response.',
-      'Packaged model and encoder together so inference matches training exactly.',
-    ],
-    results: [
-      { value: '98.9%', label: 'Accuracy — Gradient Boosting, best of five models' },
-      { value: '3-class', label: 'Low / Medium / High burnout risk' },
-      { value: 'Real-time', label: 'FastAPI prediction endpoint' },
-    ],
-    gradient: ['#f472b6', '#8b5cf6'],
-    image: 'photos/Burnout.jpg',
-    demoVideo: 'videos/Burnout.mp4',
-    poster: null,
-    github: 'https://github.com/asqar268008/Burnout-Predictor',
-    demoLink: 'videos/Burnout.mp4',
-    impact: ['5-Model Benchmark', 'Deployed FastAPI Service'],
+    impact: ['Real-time Decisions', 'Personalized AI'],
   },
 ]
 

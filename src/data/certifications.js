@@ -51,8 +51,8 @@ const certifications = [
     verifyUrl: '',
   },
   {
-    name: 'Entrepreneurship Essentials',
-    org: 'NPTEL',
+    name: 'Natural Language Processing',
+    org: 'Infosys Springboot',
     date: '',
     credentialId: '',
     verifyUrl: '',

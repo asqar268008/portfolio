@@ -38,7 +38,10 @@ const ProjectThumb = ({ project }) => {
   )
 }
 
-const ProjectCard = ({ project, onOpen }) => (
+const ProjectCard = ({ project, onOpen }) => {
+  const hasDemo = Boolean(project.demoVideo)
+
+  return (
   <motion.article
     className="project-card"
     layout
@@ -48,7 +51,7 @@ const ProjectCard = ({ project, onOpen }) => (
     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     layoutId={`card-${project.id}`}
   >
-    <ProjectThumb project={project} />
+    <ProjectThumb project={project} hasDemo={hasDemo} onPlay={() => onOpen(project, true)} />
 
     <div className="project-body">
       <h3 className="project-title">{project.title}</h3>
@@ -95,6 +98,7 @@ const ProjectCard = ({ project, onOpen }) => (
       </div>
     </div>
   </motion.article>
-)
+  )
+}
 
 export default ProjectCard

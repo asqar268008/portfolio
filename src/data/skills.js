@@ -7,7 +7,7 @@ const skills = [
     id: 'programming',
     label: 'Programming',
     description: 'Core languages for building and shipping software.',
-    skills: ['Python', 'Java', 'JavaScript', 'SQL'],
+    skills: ['Python', 'Java', 'SQL'],
   },
   {
     id: 'ml',
@@ -33,17 +33,12 @@ const skills = [
     description: 'Building with LLMs and generative pipelines.',
     skills: ['LLMs', 'Prompt Engineering', 'RAG', 'Model Integration', 'GenAI Pipelines'],
   },
-  {
-    id: 'computer-vision',
-    label: 'Computer Vision',
-    description: 'Teaching machines to see and interpret images.',
-    skills: ['Image Processing', 'Object Detection', 'Depth Estimation', 'Image Enhancement'],
-  },
+
   {
     id: 'development',
     label: 'Development',
     description: 'Engineering practices for shipping reliable apps.',
-    skills: ['Git', 'GitHub', 'REST APIs', 'Streamlit', 'Docker'],
+    skills: ['Git', 'GitHub', 'REST APIs', 'Docker'],
   },
   {
     id: 'tools',
